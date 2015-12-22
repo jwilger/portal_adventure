@@ -9,6 +9,7 @@ RSpec.describe PortalAdventure::Universe do
 
   let(:player_interface) {
     instance_double('PortalAdventure::PlayerInterface',
+                    process_next_command: nil,
                     handle_location_description: nil)
   }
 
@@ -28,6 +29,11 @@ RSpec.describe PortalAdventure::Universe do
       subject.run
       expect(first_player_character).to have_received(:inspect_location)
         .with(tell: player_interface)
+    end
+
+    it 'tells the player interface to process the next command' do
+      subject.run
+      expect(player_interface).to have_received(:process_next_command)
     end
   end
 

@@ -9,6 +9,9 @@ module PortalAdventure
       output.puts description
     end
 
+    def process_next_command
+    end
+
     private
 
     attr_accessor :input, :output

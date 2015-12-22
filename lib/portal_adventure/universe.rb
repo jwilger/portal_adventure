@@ -13,6 +13,7 @@ module PortalAdventure
 
     def run
       active_character.inspect_location(tell: player_interface)
+      player_interface.process_next_command
     end
 
     private
