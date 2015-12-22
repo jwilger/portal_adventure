@@ -24,14 +24,10 @@ RSpec.describe PortalAdventure::Universe do
   let(:default_character) { ->(location:) { first_player_character } }
 
   describe '#run' do
-    it 'describes the first room to the player' do
-      allow(first_player_character).to receive(:inspect_location) do |args|
-        args[:tell].handle_location_description room_description
-      end
-
+    it 'tells the active character to inspect its location' do
       subject.run
-      expect(player_interface).to have_received(:handle_location_description)
-        .with(room_description)
+      expect(first_player_character).to have_received(:inspect_location)
+        .with(tell: player_interface)
     end
   end
 
