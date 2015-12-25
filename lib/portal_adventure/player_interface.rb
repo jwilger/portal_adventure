@@ -9,7 +9,10 @@ module PortalAdventure
       output.puts description
     end
 
-    def process_next_command
+    def process_next_command(active_character:)
+      output.print('Enter command: ')
+      input.gets
+      active_character.inspect_location(tell: self)
     end
 
     private
