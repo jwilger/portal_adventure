@@ -21,7 +21,7 @@ RSpec.describe PortalAdventure::PlayerInterface do
     }
 
     before(:each) do
-      subject.process_next_command(active_character: active_character)
+      subject.process_next_command(character: active_character)
     end
 
     it 'prompts the user and reads the next command from the input' do
