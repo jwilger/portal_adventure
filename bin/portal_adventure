@@ -2,8 +2,8 @@
 
 $:.unshift(File.expand_path(File.join(__dir__, '..', 'lib')))
 
-require 'portal_adventure/player_interface'
 require 'portal_adventure/universe'
+require 'portal_adventure/player_interface'
 
 universe = PortalAdventure::Universe.new
 PortalAdventure::PlayerInterface.new(universe)
