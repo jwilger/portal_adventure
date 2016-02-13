@@ -7,6 +7,7 @@ module PortalAdventure
 
     def handle_location_description(description)
       output.puts description
+      output.print 'Enter Command: '
     end
 
     private
