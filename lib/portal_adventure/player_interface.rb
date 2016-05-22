@@ -1,17 +1,21 @@
 module PortalAdventure
   class PlayerInterface
-    def initialize(universe, output: STDOUT)
+    def initialize(universe, output: STDOUT, input: STDIN)
       self.output = output
-      universe.look(output_target: self)
+      self.input = input
     end
 
-    def handle_location_description(description)
-      output.puts description
-      output.print 'Enter Command: '
+    def display_text(text)
+      output.puts text
+    end
+
+    def prompt_for_next_command
+      output.print "Enter Command: "
+      input.gets
     end
 
     private
 
-    attr_accessor :output
+    attr_accessor :output, :input
   end
 end
