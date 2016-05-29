@@ -36,13 +36,15 @@ RSpec.describe PortalAdventure::PlayerInterface do
   end
 
   it 'can execute the Look command based on user input' do
-    subject.run_command('look foo bar baz')
+    allow(input).to receive(:gets).and_return('look foo bar baz')
+    subject.prompt_for_next_command
     expect(look_command).to have_received(:call)
       .with(command_args: 'foo bar baz')
   end
 
   it 'can execute the Quit command based on user input' do
-    subject.run_command('quit')
+    allow(input).to receive(:gets).and_return('quit')
+    subject.prompt_for_next_command
     expect(quit_command).to have_received(:call)
   end
 

@@ -23,7 +23,7 @@ module PortalAdventure
 
     def prompt_for_next_command
       output.print "Enter Command: "
-      input.gets
+      run_command input.gets.strip
     end
 
     private

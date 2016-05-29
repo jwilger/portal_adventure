@@ -6,4 +6,7 @@ require 'portal_adventure/universe'
 require 'portal_adventure/player_interface'
 
 universe = PortalAdventure::Universe.new
-PortalAdventure::PlayerInterface.new(universe)
+interface = PortalAdventure::PlayerInterface.new(universe)
+loop do
+  interface.prompt_for_next_command
+end
