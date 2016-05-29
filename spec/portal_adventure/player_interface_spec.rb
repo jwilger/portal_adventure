@@ -8,6 +8,16 @@ RSpec.describe PortalAdventure::PlayerInterface do
   let(:output) { instance_double('IO', puts: nil, print: nil) }
   let(:input) { instance_double('IO', gets: '') }
 
+  let!(:look_command) {
+    class_double('PortalAdventure::Commands::Look', call: nil)
+      .as_stubbed_const
+  }
+
+  let!(:quit_command) {
+    class_double('PortalAdventure::Commands::Quit', call: nil)
+      .as_stubbed_const
+  }
+
   subject {
     described_class.new(universe, output: output, input: input)
   }
@@ -25,9 +35,19 @@ RSpec.describe PortalAdventure::PlayerInterface do
     expect(input).to have_received(:gets).ordered
   end
 
-  it 'can execute the Look command based on user input'
+  it 'can execute the Look command based on user input' do
+    subject.run_command('look foo bar baz')
+    expect(look_command).to have_received(:call)
+      .with(command_args: 'foo bar baz')
+  end
 
-  it 'can execute the Quit command based on user input'
+  it 'can execute the Quit command based on user input' do
+    subject.run_command('quit')
+    expect(quit_command).to have_received(:call)
+  end
 
-  it 'executes the Look command on startup'
+  it 'executes the Look command on startup' do
+    described_class.new(universe, output: output, input: input)
+    expect(look_command).to have_received(:call).with(no_args)
+  end
 end
